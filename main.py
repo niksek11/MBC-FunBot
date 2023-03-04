@@ -5,8 +5,6 @@ from discord.ext import commands
 from dotenv import load_dotenv
 
 load_dotenv()
-cwd = Path(__file__).parents[0]
-cwd = str(cwd)
 
 class MyBot(commands.Bot):
     async def setup_hook(self):
@@ -20,17 +18,18 @@ intents = discord.Intents.all()
 intents.presences = True
 intents.members = True
 intents.guilds = True
+
 bot = MyBot(command_prefix=".", intents=intents)
+
 bot.extensions_list = ""
 bot.remove_command('help')
 
-#load message
+#Load message in console :)
 @bot.event
 async def on_ready():
-    print("[-] Starting BOT... Please Wait 🟡")
     await bot.change_presence(activity=discord.Streaming(name='/help', url='https://twitch.tv/Insym'))
-
-
+    
+    print("[-] Starting BOT... Please Wait 🟡")
     print(f"[-] Bot Extensions 📂 ({len(bot.extensions_list)})")
     print(bot.extensions_list)
     print("[-] Logged in as {0.user} 🤖".format(bot))
@@ -39,10 +38,10 @@ async def on_ready():
 
 @bot.event
 async def on_guild_join(guild):
-    print(f"➕ NEW GUILD: {guild.name} | id: {guild.id}")
+    print(f"➕ NEW GUILD: {guild.name} ({guild.id})")
+    
 @bot.event
 async def on_guild_remove(guild):
-    print(f"➖ REMOVED GUILD: {guild.name} | id: {guild.id}")
+    print(f"➖ REMOVED GUILD: {guild.name} ({guild.id})")
 
-TOKEN = os.getenv("DISCORD_TOKEN")
-bot.run(TOKEN, reconnect=True)
+bot.run(os.getenv("DISCORD_TOKEN"), reconnect=True)
