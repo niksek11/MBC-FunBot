@@ -1,14 +1,8 @@
 import time
-
 import discord
 import wavelink
 from discord import app_commands
 from discord.ext import commands, tasks
-
-from Addons.blacklist import blacklist_check
-from Addons.loop import getLoop
-from config import config
-
 
 class nowplaying(commands.Cog):
     def __init__(self, bot: commands.Bot):

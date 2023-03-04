@@ -1,9 +1,6 @@
 import wavelink
 from discord.ext import commands
 
-from Addons.loop import getLoop
-
-
 class Music(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
@@ -12,7 +9,7 @@ class Music(commands.Cog):
     async def connect_nodes(self):
         await self.bot.wait_until_ready()
         await wavelink.NodePool.create_node(bot=self.bot, host="127.0.0.1", port=2333, password="password")
-        
+
     @commands.Cog.listener()
     async def on_wavelink_node_ready(self, node: wavelink.Node):
         print(f"Wavelink: node <{node.identifier}> is ready | Lavalink connected! 🟢")
