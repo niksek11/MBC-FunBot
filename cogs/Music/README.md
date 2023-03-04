@@ -1,2 +1,0 @@
-# MBC-MusicBot
-lubie placki
