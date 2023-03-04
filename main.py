@@ -24,13 +24,15 @@ bot = MyBot(command_prefix=".", intents=intents)
 bot.extensions_list = ""
 bot.remove_command('help')
 
+extensionsArray = bot.extensions_list.split(",")
+
 #Load message in console :)
 @bot.event
 async def on_ready():
     await bot.change_presence(activity=discord.Streaming(name='/help', url='https://twitch.tv/Insym'))
     
     print("[-] Starting BOT... Please Wait 🟡")
-    print(f"[-] Bot Extensions 📂 ({len(bot.extensions_list)})")
+    print(f"[-] Bot Extensions 📂 ({len(extensionsArray)})")
     print(bot.extensions_list)
     print("[-] Logged in as {0.user} 🤖".format(bot))
     print("[-] Startup Complete! 🟢")
